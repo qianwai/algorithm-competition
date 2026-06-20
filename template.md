@@ -1011,9 +1011,9 @@ void solve(){
 ## 2.3 dijkstra
 
 ```cpp
-vector<ll> dijkstra(ll n,ll st){
+vector<ll> dijkstra(vector<vector<pll>> &G,ll n,ll st){
     vector<ll> dis(n+1,INF); 
-    bitset<N> vis;
+    vector<bool> vis(n+1,0);
     priority_queue<pll,vector<pll>,greater<pll>> pq;
     dis[st]=0;
     pq.push({0LL,st});
@@ -1030,6 +1030,31 @@ vector<ll> dijkstra(ll n,ll st){
         }
     }
     return dis;
+}
+
+void solve(){
+    ll n,m,s;
+    cin>>n>>m>>s;
+    vector<vector<pll>> G(n+1);
+    for(int i=1;i<=m;++i){
+        ll u,v,w;
+        cin>>u>>v>>w;
+        G[u].push_back({v,w});
+    }
+    vector<ll> dis=dijkstra(G,n,s);
+    for(int i=1;i<=n;++i) {
+        cout<<dis[i]<<" ";
+    }
+
+}
+
+int main(){
+    ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+    int _ =1;
+    // cin>> _;
+    while(_--)
+        solve();
+    return 0;
 }
 ```
 
